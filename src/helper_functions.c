@@ -337,10 +337,10 @@ void Print_Information_Processor(bool* nehalem, bool* sandy_bridge, bool* ivy_br
 void Test_Or_Make_MSR_DEVICE_FILES()
 {
     //test if the msr file exists
-    if (access ("/dev/cpu/0/msr", F_OK) == 0)
+    if (faccessat (0, "/dev/cpu/0/msr", F_OK, AT_EACCESS) == 0)
     {
         printf ("i7z DEBUG: msr device files exist /dev/cpu/*/msr\n");
-        if (access ("/dev/cpu/0/msr", W_OK) == 0)
+        if (faccessat (0, "/dev/cpu/0/msr", W_OK, AT_EACCESS) == 0)
         {
             //a system mght have been set with msr allowable to be written
             //by a normal user so...
@@ -594,7 +594,7 @@ int in_core_list(int ii,int* core_list)
 
 bool file_exists(char* filename)
 {
-    if (access(filename, F_OK) == 0)
+    if (faccessat(0, filename, F_OK, AT_EACCESS) == 0)
     {
         return true;
     } else {
