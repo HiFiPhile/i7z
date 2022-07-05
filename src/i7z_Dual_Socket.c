@@ -37,7 +37,7 @@ float Read_Voltage_CPU(int cpu_num);
 extern struct program_options prog_options;
 FILE *fp_log_file;
 
-struct timespec global_ts;
+extern struct timespec global_ts;
 extern FILE *fp_log_file_freq_1, *fp_log_file_freq_2;
 
 extern char* CPU_FREQUENCY_LOGGING_FILE_single;
@@ -92,6 +92,8 @@ void print_i7z_socket(struct cpu_socket_info socket_0, int printw_offset, int PL
     int CPU_Multiplier, error_indx;
     unsigned long long int CPU_CLK_UNHALTED_CORE, CPU_CLK_UNHALTED_REF, CPU_CLK_C3, CPU_CLK_C6, CPU_CLK_C1, CPU_CLK_C7;
 
+    //init
+    CPU_CLK_C7 = 0;
     char print_core[32];
     //current blck value
     float BLCK;
